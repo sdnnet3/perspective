@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+{% include 'loader.html' %}
+
+    <!-- Begin Header -->
+    <header>
+
+        <a href="{% url 'home:main' %}" class="logo-container">
+            <p>Perspective Perfection</p>
+        </a>
+
+{% include 'nav_bar.html' %}
+
+        <a href="#" class="mobile-navigation icon3-list2"></a>
+
+    </header>
+    <!-- End Header -->
+
+
+    
+
+
+
+{% endblock content %}

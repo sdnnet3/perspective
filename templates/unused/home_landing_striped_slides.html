@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<!-- Begin Body -->
+<body>
+
+
+
+
+
+    <!-- Begin Loader -->
+    <div class="loader" data-background-color="#000000" data-text-color="#ffffff">
+        <p>LOADING</p>
+        <span class="circle"></span>
+    </div>
+    <!-- End Loader -->
+
+
+
+
+    <!-- Begin Content -->
+    <div class="striped-slides">
+
+        <!-- Begin Logo container -->
+        <a href="index.html" class="logo-container">
+            <img src="{% static 'images/logo2.png' %}" alt="">
+        </a>
+        <!-- End Logo container -->
+
+        <!-- Begin Columns -->
+        <div class="cols cols-3">
+
+            <div class="flexslider col no-nav">
+                <ul class="slides">
+                    <li style="background-image:url({% static 'images/home/h2_1.png' %});"></li>
+                    <li style="background-image:url({% static 'images/home/h2_1.png' %});"></li>
+                    <li style="background-image:url({% static 'images/home/h2_1.png' %});"></li>
+                </ul>
+            </div>
+
+            <div class="flexslider col no-nav">
+                <ul class="slides">
+                    <li style="background-image:url({% static 'images/home/h2_1.png' %});"></li>
+                    <li style="background-image:url({% static 'images/home/h2_1.png' %});"></li>
+                    <li style="background-image:url({% static 'images/home/h2_1.png' %});"></li>
+                </ul>
+            </div>
+
+            <div class="flexslider col no-nav">
+                <ul class="slides">
+                    <li style="background-image:url({% static 'images/home/h2_1.png' %});"></li>
+                    <li style="background-image:url({% static 'images/home/h2_1.png' %});"></li>
+                    <li style="background-image:url({% static 'images/home/h2_1.png' %});"></li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- End Slides -->
+
+    </div>
+    <!-- End Content -->
+
+</body>
+<!-- End Body -->
+
+{% endblock content %}

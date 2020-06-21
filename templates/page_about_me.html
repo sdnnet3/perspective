@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'loader.html' %}
+
+    <!-- Begin Header -->
+    <header>
+
+        <a href="index.html" class="logo-container">
+            <p>Perspective Perfection</p>
+        </a>
+
+{% include 'nav_bar.html' %}
+
+        <a href="#" class="mobile-navigation icon3-list2"></a>
+
+    </header>
+    <!-- End Header -->
+
+
+    <!-- Begin Content -->
+    <div class="main-container" style="background-image:url({% static 'images/pages/p2_1.png' %})">
+
+        <div class="min-style">
+            <div class="content-wrapper clearfix">
+
+                <div class="row">
+
+                    <div class="col three-fourth">
+
+                        {% for about in about %}
+                        <div class="info-box col one-fourth">
+                            <p class="desc">NAME</p>
+                            <p class="info">{{ about.name }}</p>
+                        </div>
+                        <div class="info-box col one-fourth">
+                            <p class="desc">PLACE</p>
+                            <p class="info">{{ about.place }}</p>
+                        </div>
+                        <div class="info-box col one-fourth">
+                            <p class="desc">WORK</p>
+                            <p class="info">{{ about.work }}</p>
+                        </div>
+                        <div class="info-box col one-fourth">
+                            <p class="desc">TITLE</p>
+                            <p class="info">{{ about.title }}</p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col full">
+
+                                <p>{{ about.bio }}</p>
+
+                                <div class="divider" style="height:20px;"></div>
+                                
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col full">
+                                
+                                <div class="phone"><p>{{ about.phone }}</p></div>
+
+                                <div class="social-icons">
+
+                                    <a href="{{ about.facebook }}" class="icon1-facebook"></a>
+                                    <a href="{{ about.instagram }}" class="icon1-instagram"></a>
+                                    {% endfor %}
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <img class="personal-img" src="{% static 'images/pages/p2_2.png' %}" alt="">
+
+                </div>
+
+                <div class="clear"></div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- End Content -->
+{% endblock content %}

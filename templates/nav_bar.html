@@ -1,0 +1,25 @@
+<nav>
+            <ul>
+
+                <li>
+                    <a href="{% url 'home:main' %}" {{ active_home }}>HOME</a>
+                </li>
+
+               <li>
+                    <a href="{% url 'gallery:main' %}" {{ active_gallery }}>GALLERY</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'portfolio:main' %}" {{ active_portfolio }}>PORTFOLIO</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'aboutme' %}" {{ active_about }}>ABOUT ME</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'blog:index' %}" {{ active_blog }}>BLOG</a>
+                </li>
+            
+            </ul>
+        </nav>

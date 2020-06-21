@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% for layout in layouts %}
+    <!-- Begin Content -->
+    <div class="striped-pages">
+
+        <!-- Begin Logo container -->
+        <a href="{% url 'home:main' %}" class="logo-container">
+            <img src="{{ layout.Logo.url }}" alt="">
+        </a>
+        <!-- End Logo container -->
+
+        <!-- Begin Columns -->
+        <div class="cols cols-3">
+
+            <div class="col" style="background-image:url({{ layout.Home.url }});">
+                <div class="overlay"></div>
+                <h4>
+                    <a href="{% url 'home:main' %}">
+                        <span>HOME</span>
+                    </a>
+                </h4>
+            </div>
+
+            <div class="col" style="background-image:url({{ layout.Gallery.url }});">
+                <div class="overlay"></div>
+                <h4>
+                    <a href="{% url 'gallery:main' %}">
+                        <span>GALLERY</span>
+                    </a>
+                </h4>
+            </div>
+
+            <div class="col" style="background-image:url({{ layout.Portfolio.url }});">
+                <div class="overlay"></div>
+                <h4>
+                    <a href="{% url 'portfolio:main' %}">
+                        <span>PORTFOLIO</span>
+                    </a>
+                </h4>
+            </div>
+
+        </div>
+        <!-- End Slides -->
+
+    </div>
+    <!-- End Content -->
+    {% endfor %}
+{% endblock content %}

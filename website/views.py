@@ -6,11 +6,11 @@ from website.models import ImageProduct  # Ensure this import is correct
 
 def product_list(request):
     products = ImageProduct.objects.all()
-    return render(request, 'website/product_list.html', {'products': products})
+    return render(request, 'coderedcms/pages/product_list.html', {'products': products})
 
 def product_detail(request, product_id):
     product = get_object_or_404(ImageProduct, id=product_id)
-    return render(request, 'website/product_detail.html', {'product': product})
+    return render(request, 'coderedcms/pages/product_detail.html', {'product': product})
 
 def subscribe(request):
     if request.method == 'POST':
@@ -31,5 +31,5 @@ def subscribe(request):
             return redirect('subscribe')
     else:
         form = SubscribeForm()
-    return render(request, 'coderedcms/website/pages/subscribe.html', {'form': form})
+    return render(request, 'coderedcms/pages/subscribe.html', {'form': form})
 

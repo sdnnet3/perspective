@@ -11,6 +11,9 @@ class Cart(object):
             cart = self.session[settings.CART_SESSION_ID] = {}
         self.cart = cart
 
+    def save(self):
+        self.session.modified = True
+
     def add(self, product, quantity=1, update_quantity=False):
         product_id = str(product.id)
         if product_id not in self.cart:
@@ -19,20 +22,18 @@ class Cart(object):
             self.cart[product_id]['quantity'] = quantity
         else:
             self.cart[product_id]['quantity'] += quantity
-        if not product.is_digital and self.cart[product_id]['quantity'] > product.stock:
-            self.cart[product_id]['quantity'] = product.stock  # Ensure stock limit
         self.save()
 
     def remove(self, product):
         product_id = str(product.id)
         if product_id in self.cart:
             del self.cart[product_id]
-        self.save()
+            self.save()
 
     def __iter__(self):
         product_ids = self.cart.keys()
         # get the product objects and add them to the cart
-        products = Product.objects.filter(id__in=product_ids)
+        products = ImageProduct.objects.filter(id__in=product_ids)
         cart = self.cart.copy()
         for product in products:
             cart[str(product.id)]['product'] = product

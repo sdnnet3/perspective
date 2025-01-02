@@ -1,0 +1,31 @@
+{% extends "coderedcms/pages/web_page.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">{{ product.name }}</h2>
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid mb-3">
+                    </div>
+                    <p>{{ product.description }}</p>
+                    <p><strong>Price:</strong> {{ product.price }}</p>
+                    <p><strong>Stock:</strong> {{ product.stock }}</p>
+                    <form action="{% url 'cart_add' product_id %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" id="quantity" name="quantity" value="1" min="1" max="{{ product.stock }}" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block mt-3">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

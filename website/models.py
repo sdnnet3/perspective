@@ -299,23 +299,20 @@ class SubscribePage(CoderedWebPage):
 from django.db import models
 from wagtail.images.models import Image
 from wagtail.admin.panels import FieldPanel
+from wagtail.images.blocks import ImageChooserBlock
+from wagtail.fields import StreamField
 
 class ImageProduct(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    portrait_image = models.ForeignKey(
-        Image, on_delete=models.SET_NULL, null=True, blank=True, related_name='portrait_images'
-    )
-    landscape_image = models.ForeignKey(
-        Image, on_delete=models.SET_NULL, null=True, blank=True, related_name='landscape_images'
-    )
+    image = models.ImageField(upload_to='media/products/', null=True, blank=True)
     image_orientation = models.CharField(
         max_length=10,
         choices=[('portrait', 'Portrait'), ('landscape', 'Landscape')],
         default='portrait'
     )
-    
+    # Removed is_digital field
     def __str__(self):
         return self.name
 
@@ -323,12 +320,9 @@ class ImageProduct(models.Model):
         FieldPanel('name'),
         FieldPanel('description'),
         FieldPanel('price'),
-        FieldPanel('portrait_image'),
-        FieldPanel('landscape_image'),
+        FieldPanel('image'),
         FieldPanel('image_orientation'),
     ]
 
     def get_display_image(self):
-        if self.image_orientation == 'portrait':
-            return self.portrait_image
-        return self.landscape_image
+        return self.image

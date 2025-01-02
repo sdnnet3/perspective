@@ -3,42 +3,44 @@
 {% block content %}
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <h1 class="text-center">Products</h1>
                 </div>
                 <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th></th> <!-- Image column header -->
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Price</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for product in products %}
-                            <tr>
-                                <td>
-                                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid" style="max-width: 100px;">
-                                </td>
-                                <td>{{ product.name }}</td>
-                                <td>{{ product.description }}</td>
-                                <td>{{ product.price }}</td>
-                                <td>
-                                    <form action="{% url 'cart_add' product.id %}" method="post">
-                                        {% csrf_token %}
-                                        <input type="number" name="quantity" value="1" min="1" max="{{ product.stock }}">
-                                        <button type="submit" class="btn btn-primary">Add to Cart</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th></th> <!-- Image column header -->
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Price</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in products %}
+                                <tr>
+                                    <td>
+                                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid" style="max-width: 100px;">
+                                    </td>
+                                    <td>{{ product.name }}</td>
+                                    <td>{{ product.description }}</td>
+                                    <td>{{ product.price }}</td>
+                                    <td>
+                                        <form action="{% url 'cart_add' product.id %}" method="post">
+                                            {% csrf_token %}
+                                            <input type="number" name="quantity" value="1" min="1" max="{{ product.stock }}" class="form-control">
+                                            <button type="submit" class="btn btn-primary mt-2">Add to Cart</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

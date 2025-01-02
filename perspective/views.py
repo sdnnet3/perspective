@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.views.decorators.http import require_POST
 from .forms import ClientLoginForm
-from website.models import Product
-from cart.cart import Cart  # Update this import
+from website.models import ImageProduct
+from cart.cart import Cart
 from django.contrib import messages
 from .forms import SubscribeForm
 from .services.mailchimp_service import MailchimpService
@@ -30,16 +30,16 @@ class ClientLoginView(View):
         return render(request, self.template_name, {'form': form})
 
 @require_POST
-def cart_add(request, product_id):
+def cart_add(request, image_product_id):
     cart = Cart(request)
-    product = get_object_or_404(Product, id=product_id)
-    cart.add(product=product, quantity=int(request.POST.get('quantity', 1)))
+    image_product = get_object_or_404(ImageProduct, id=image_product_id)
+    cart.add(image_product=image_product, quantity=int(request.POST.get('quantity', 1)))
     return redirect('cart_detail')
 
-def cart_remove(request, product_id):
+def cart_remove(request, image_product_id):
     cart = Cart(request)
-    product = get_object_or_404(Product, id=product_id)
-    cart.remove(product)
+    image_product = get_object_or_404(ImageProduct, id=image_product_id)
+    cart.remove(image_product)
     return redirect('cart_detail')
 
 def cart_detail(request):

@@ -57,6 +57,14 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
+    # Third-party
+    'storages',
+    'boto3',
+    'wagtail_modeladmin',
+    'cart',
+    'crispy_forms',
+    'crispy_bootstrap5',
+    'django_redis',
 ]
 
 MIDDLEWARE = [

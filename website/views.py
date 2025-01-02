@@ -1,12 +1,16 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from website.forms import SubscribeForm  # Ensure this import is correct
 from website.services.mailchimp_service import MailchimpService  # Ensure this import is correct
-from website.models import Product  # Ensure this import is correct
+from website.models import ImageProduct  # Ensure this import is correct
 
 def product_list(request):
-    products = Product.objects.all()
+    products = ImageProduct.objects.all()
     return render(request, 'website/product_list.html', {'products': products})
+
+def product_detail(request, product_id):
+    product = get_object_or_404(ImageProduct, id=product_id)
+    return render(request, 'website/product_detail.html', {'product': product})
 
 def subscribe(request):
     if request.method == 'POST':

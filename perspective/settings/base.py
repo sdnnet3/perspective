@@ -97,6 +97,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "perspective.wsgi.application"
 
+# Redis Cache
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "PASSWORD": config("REDIS_SHELL"),
+        },
+        "KEY_PREFIX": "wagtail",  # prefix for cache keys
+    }
+}
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases

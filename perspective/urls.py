@@ -7,11 +7,33 @@ from django.urls import include
 from django.urls import path
 from wagtail.documents import urls as wagtaildocs_urls
 
+from perspective.api import api
+from perspective.views import subscribe
+from .views import ClientLoginView, cart_add, cart_remove, cart_detail
+from website.views import product_list
 
 urlpatterns = [
     # Admin
     path("django-admin/", admin.site.urls),
     path("admin/", include(crx_admin_urls)),
+    
+    #api
+    path('api/', api.urls),
+
+    # Client-login
+    path('login/', ClientLoginView.as_view(), name='client_login'),
+
+    # Cart
+    path('cart/add/<int:product_id>/', cart_add, name='cart_add'),
+    path('cart/remove/<int:product_id>/', cart_remove, name='cart_remove'),
+    path('cart/', cart_detail, name='cart_detail'),
+
+    # mailchimp
+    path('subscribe/', subscribe, name='subscribe'),
+
+    # Product list
+    path('products/', product_list, name='product_list'),  # Add this line
+
     # Documents
     path("docs/", include(wagtaildocs_urls)),
     # Search

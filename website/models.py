@@ -257,3 +257,67 @@ class Footer(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+
+
+# SubscribePage
+
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from .forms import SubscribeForm
+from .services.mailchimp_service import MailchimpService
+from wagtail.models import Page
+
+class SubscribePage(CoderedWebPage):
+    template = 'coderedcms/pages/subscribe.html'
+
+    def serve(self, request):
+        form = SubscribeForm()
+        if request.method == 'POST':
+            form = SubscribeForm(request.POST)
+            if form.is_valid():
+                email = form.cleaned_data['email']
+                first_name = form.cleaned_data['first_name']
+                last_name = form.cleaned_data['last_name']
+                mailchimp_service = MailchimpService()
+                try:
+                    mailchimp_service.subscribe_user(email, first_name, last_name)
+                    messages.success(request, 'You have been subscribed!')
+                except Exception as e:
+                    if 'User already exists' in str(e):
+                        messages.info(request, 'User already exists.')
+                    else:
+                        messages.error(request, 'An error occurred while subscribing. Please try again later.')
+                return redirect(self.url)
+        return render(request, self.template, {'page': self, 'form': form})
+
+
+
+from wagtail.images.models import Image
+from wagtail.images.edit_handlers import ImageChooserPanel
+
+class ImageProduct(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    portrait_image = models.ForeignKey(Image, on_delete=models.SET_NULL, null=True, blank=True, related_name='portrait_images')
+    landscape_image = models.ForeignKey(Image, on_delete=models.SET_NULL, null=True, blank=True, related_name='landscape_images')
+    image_orientation = models.CharField(
+        max_length=10,
+        choices=[('portrait', 'Portrait'), ('landscape', 'Landscape')],
+        default='portrait'
+    )
+    
+    def __str__(self):
+        return self.name
+
+    content_panels = [
+        ImageChooserPanel('portrait_image'),
+        ImageChooserPanel('landscape_image'),
+        models.FieldPanel('image_orientation'),
+    ]
+
+    def get_display_image(self):
+        if self.image_orientation == 'portrait':
+            return self.portrait_image
+        return self.landscape_image

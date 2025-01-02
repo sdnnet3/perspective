@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}My Site{% endblock %}</title>
+    <!-- ...existing code... -->
+</head>
+<body>
+    <!-- ...existing code... -->
+    <nav>
+        <!-- ...existing code... -->
+        <a href="{% url 'cart_detail' %}">View Cart</a>  <!-- Add this line -->
+        <!-- ...existing code... -->
+    </nav>
+    <!-- ...existing code... -->
+</body>
+</html>

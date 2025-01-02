@@ -1,0 +1,30 @@
+{# templates/client_login.html #}
+{% extends "coderedcms/pages/web_page.html" %}
+{% load wagtailcore_tags %}
+{% load wagtailadmin_tags wagtailcore_tags wagtailimages_tags coderedcms_tags %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Client Login</h2>
+                </div>
+                <div class="card-body">
+                    {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    {% crispy form %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

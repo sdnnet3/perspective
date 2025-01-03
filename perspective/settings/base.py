@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
+# import cv
+
 
 # Build paths inside the project like this: BASE_DIR / "subdir".
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -233,6 +235,8 @@ CSRF_COOKIE_SECURE = True
 WAGTAILIMAGES_MAX_UPLOAD_SIZE = 50 * 1024 * 1024  # i.e. 20MB
 DATA_UPLOAD_MAX_MEMORY_SIZE = 50 * 1024 * 1024  # 10 MB
 FILE_UPLOAD_MAX_MEMORY_SIZE = 50 * 1024 * 1024  # 10 MB
+
+# Feature detection
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = True
 
 # CSRF settings

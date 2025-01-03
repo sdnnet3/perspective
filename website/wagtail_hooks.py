@@ -1,5 +1,6 @@
 from wagtail import hooks
 from wagtail_modeladmin.options import ModelAdmin, modeladmin_register
+from wagtail.images.models import Image
 from .models import ImageProduct  # Ensure this import is here
 
 class ProductAdmin(ModelAdmin):

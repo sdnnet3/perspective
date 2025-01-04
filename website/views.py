@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from website.forms import SubscribeForm  # Ensure this import is correct
 from website.services.mailchimp_service import MailchimpService  # Ensure this import is correct
-from website.models import ImageProduct  # Ensure this import is correct
+from website.models import ImageProduct, ArtisticPrint  # Ensure this import is correct
 
 def product_list(request):
     products = ImageProduct.objects.all()
@@ -32,4 +32,8 @@ def subscribe(request):
     else:
         form = SubscribeForm()
     return render(request, 'coderedcms/pages/subscribe.html', {'form': form})
+
+def artistic_prints_list(request):
+    prints = ArtisticPrint.objects.all()
+    return render(request, 'coderedcms/pages/artistic_prints_list.html', {'prints': prints})
 

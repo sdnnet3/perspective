@@ -1,0 +1,55 @@
+{% extends "coderedcms/pages/web_page.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="text-center">Artistic Prints</h1>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Price</th>
+                                    <th>Size</th>
+                                    <th>Paper</th>
+                                    <th>Mounting</th>
+                                    <th>Non-Mounted Payment Link</th>
+                                    <th>Mounted Payment Link</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for print in prints %}
+                                <tr>
+                                    <td>
+                                        <img src="{{ print.image.url }}" alt="{{ print.name }}" class="img-fluid" style="max-width: 100px;">
+                                    </td>
+                                    <td>{{ print.name }}</td>
+                                    <td>{{ print.description }}</td>
+                                    <td>{{ print.price }}</td>
+                                    <td>{{ print.size }}</td>
+                                    <td>{{ print.paper }}</td>
+                                    <td>{{ print.mounting }}</td>
+                                    <td>
+                                        <a href="{{ print.payment_link_non_mounted }}" class="btn btn-primary" target="_blank">Buy Non-Mounted</a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ print.payment_link_mounted }}" class="btn btn-secondary" target="_blank">Buy Mounted</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

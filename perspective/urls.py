@@ -10,7 +10,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 from perspective.api import api
 from perspective.views import subscribe
 from .views import ClientLoginView, cart_add, cart_remove, cart_detail
-from website.views import product_list
+from website.views import product_list, artistic_prints_list
 
 urlpatterns = [
     # Admin
@@ -32,7 +32,8 @@ urlpatterns = [
     path('subscribe/', subscribe, name='subscribe'),
 
     # Product list
-    path('products/', product_list, name='product_list'),  # Add this line
+    path('products/', product_list, name='product_list'),
+    path('prints/', artistic_prints_list, name='artistic_prints_list'),
 
     # Documents
     path("docs/", include(wagtaildocs_urls)),

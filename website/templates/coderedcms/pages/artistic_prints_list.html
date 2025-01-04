@@ -20,8 +20,7 @@
                                     <th>Size</th>
                                     <th>Paper</th>
                                     <th>Mounting</th>
-                                    <th>Non-Mounted Payment Link</th>
-                                    <th>Mounted Payment Link</th>
+                                    <th>Payment Link</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,10 +36,7 @@
                                     <td>{{ print.paper }}</td>
                                     <td>{{ print.mounting }}</td>
                                     <td>
-                                        <a href="{{ print.payment_link_non_mounted }}" class="btn btn-primary" target="_blank">Buy Non-Mounted</a>
-                                    </td>
-                                    <td>
-                                        <a href="{{ print.payment_link_mounted }}" class="btn btn-secondary" target="_blank">Buy Mounted</a>
+                                        <a href="{{ print.payment_link }}" class="btn btn-primary" target="_blank">Buy</a>
                                     </td>
                                 </tr>
                                 {% endfor %}

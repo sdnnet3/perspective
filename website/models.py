@@ -341,8 +341,7 @@ class ArtisticPrint(models.Model):
     size = models.CharField(max_length=50, blank=True)
     paper = models.CharField(max_length=50, blank=True)
     mounting = models.CharField(max_length=50, blank=True)
-    payment_link_non_mounted = models.URLField(max_length=200, blank=True)
-    payment_link_mounted = models.URLField(max_length=200, blank=True)
+    payment_link = models.URLField(max_length=200, blank=True)
 
     def __str__(self):
         return self.name
@@ -356,8 +355,7 @@ class ArtisticPrint(models.Model):
         FieldPanel('size'),
         FieldPanel('paper'),
         FieldPanel('mounting'),
-        FieldPanel('payment_link_non_mounted'),
-        FieldPanel('payment_link_mounted'),
+        FieldPanel('payment_link'),
     ]
 
     def get_display_image(self):

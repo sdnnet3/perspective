@@ -1,7 +1,7 @@
 from wagtail import hooks
 from wagtail_modeladmin.options import ModelAdmin, modeladmin_register
 from wagtail.images.models import Image
-from .models import ImageProduct  # Ensure this import is here
+from .models import ImageProduct
 
 class ProductAdmin(ModelAdmin):
     model = ImageProduct
@@ -13,4 +13,5 @@ class ProductAdmin(ModelAdmin):
     list_display = ('name', 'price', 'image_orientation')
     search_fields = ('name', 'description')
 
-modeladmin_register(ProductAdmin)
+# modeladmin_register(ProductAdmin)
+

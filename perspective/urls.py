@@ -10,7 +10,8 @@ from wagtail.documents import urls as wagtaildocs_urls
 from perspective.api import api
 from perspective.views import subscribe
 from .views import ClientLoginView, cart_add, cart_remove, cart_detail
-from website.views import product_list, artistic_prints_list
+from website.views import product_list
+from prints.views import artistic_prints_list
 
 urlpatterns = [
     # Admin

@@ -1,5 +1,5 @@
 from django.db import models
-from website.models import ImageProduct  # Ensure this import is here
+from website.models import ImageProduct
 
 class CartItem(models.Model):
     product = models.ForeignKey(ImageProduct, on_delete=models.CASCADE)

@@ -10,31 +10,29 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
-                            <thead>
+                        <table class="table table-bordered text-center">
+                            <thead class="text-center">
                                 <tr>
                                     <th>Image</th>
                                     <th>Name</th>
-                                    <th>Description</th>
+                                    {% comment %} <th>Description</th> {% endcomment %}
                                     <th>Price</th>
                                     <th>Size</th>
-                                    <th>Paper</th>
-                                    <th>Mounting</th>
+                                    <th>Type</th>
                                     <th>Payment Link</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                {% for print in prints %}
-                                <tr>
+                            <tbody class="text-center">
+                                {% for print in prints_info %}
+                                <tr class="align-middle">
                                     <td>
-                                        <img src="{{ print.image.url }}" alt="{{ print.name }}" class="img-fluid" style="max-width: 100px;">
+                                        <img src="{{ print.image_url }}" alt="{{ print.name }}" class="img-fluid" style="max-width: 300px;">
                                     </td>
                                     <td>{{ print.name }}</td>
-                                    <td>{{ print.description }}</td>
+                                    {% comment %} <td>{{ print.description }}</td> {% endcomment %}
                                     <td>{{ print.price }}</td>
                                     <td>{{ print.size }}</td>
-                                    <td>{{ print.paper }}</td>
-                                    <td>{{ print.mounting }}</td>
+                                    <td><pre>{{ print.type }}</pre></td>
                                     <td>
                                         <a href="{{ print.payment_link }}" class="btn btn-primary" target="_blank">Buy</a>
                                     </td>

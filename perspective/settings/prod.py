@@ -7,7 +7,7 @@ DEBUG = False
 SECRET_KEY = "r&(80y1!-jmrac4+q#chr3ixixix=-717v61ebgs954yi#)=m#"
 
 # Add your site's domain name(s) here.
-ALLOWED_HOSTS = ["www.perspectiveperfection.com"]
+ALLOWED_HOSTS = ["www.perspectiveperfection.com", "perspectiveperfection.com"]
 
 # To send email from the server, we recommend django_sendmail_backend
 # Or specify your own email backend such as an SMTP server.
@@ -28,15 +28,6 @@ MANAGERS = ADMINS
 
 # Email address used to send error messages to ADMINS.
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
-
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
-        "LOCATION": BASE_DIR / "cache",  # noqa
-        "KEY_PREFIX": "coderedcms",
-        "TIMEOUT": 14400,  # in seconds
-    }
-}
 
 
 LOGGING = {
